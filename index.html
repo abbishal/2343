@@ -37,34 +37,13 @@
 
     <div class="meme-container">
         <h1>System Far Denge!</h1>
-        <iframe id="video" src="https://www.youtube.com/embed/l8X3Ez0_F_E?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe id="video" src="https://www.youtube.com/embed/l8X3Ez0_F_E?autoplay=1&mute=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <p>When the system breaks down, but we still carry on!</p>
     </div>
 
     <div class="footer">
         © 2024 Meme Central
     </div>
-
-    <script>
-        // Load YouTube API script
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('video', {
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-    </script>
 
 </body>
 </html>
