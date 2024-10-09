@@ -36,7 +36,7 @@
 
     <div class="meme-container">
         <h1>System Far Denge!</h1>
-        <video id="videoPlayer" controls autoplay>
+        <video id="videoPlayer" controls autoplay muted>
             <source src="system.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -46,6 +46,16 @@
     <div class="footer">
         © 2024 Meme Central
     </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            var video = document.getElementById('videoPlayer');
+            video.play();
+            setTimeout(function() {
+                video.muted = false;
+            }, 1000); // Unmute after 1 second
+        });
+    </script>
 
 </body>
 </html>
