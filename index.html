@@ -18,9 +18,10 @@
         h1 {
             color: #333;
         }
-        video {
-            width: 640px; /* Fixed width */
-            height: 360px; /* Fixed height */
+        iframe {
+            max-width: 100%;
+            height: 315px; /* Adjust height as needed */
+            border: none;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -36,10 +37,7 @@
 
     <div class="meme-container">
         <h1>System Far Denge!</h1>
-        <video id="videoPlayer" controls autoplay muted>
-            <source src="system.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+        <iframe id="video" src="https://www.youtube.com/embed/l8X3Ez0_F_E?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <p>When the system breaks down, but we still carry on!</p>
     </div>
 
@@ -48,13 +46,24 @@
     </div>
 
     <script>
-        window.addEventListener('load', function() {
-            var video = document.getElementById('videoPlayer');
-            video.play();
-            setTimeout(function() {
-                video.muted = false;
-            }, 1000); // Unmute after 1 second
-        });
+        // Load YouTube API script
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('video', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
     </script>
 
 </body>
