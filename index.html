@@ -31,24 +31,13 @@
             font-size: 14px;
             color: #777;
         }
-        button {
-            margin: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #28a745;
-            color: white;
-        }
     </style>
 </head>
 <body>
 
     <div class="meme-container">
         <h1>System Far Denge!</h1>
-        <div id="player"></div>
-        <button id="playButton">Play Video</button>
+        <iframe id="video" src="https://www.youtube.com/embed/l8X3Ez0_F_E?enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <p>When the system breaks down, but we still carry on!</p>
     </div>
 
@@ -57,7 +46,7 @@
     </div>
 
     <script>
-        // Load the IFrame Player API code asynchronously.
+        // Load YouTube API script
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -65,21 +54,16 @@
 
         var player;
         function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '315',
-                width: '560',
-                videoId: 'l8X3Ez0_F_E',
-                playerVars: {
-                    'autoplay': 0, // Set to 0; we'll control it with JavaScript
-                    'controls': 1,
-                    'mute': 0 // You can change to 1 if you want it to be muted
+            player = new YT.Player('video', {
+                events: {
+                    'onReady': onPlayerReady
                 }
             });
         }
 
-        document.getElementById('playButton').addEventListener('click', function() {
-            player.playVideo(); // Play the video when button is clicked
-        });
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
     </script>
 
 </body>
